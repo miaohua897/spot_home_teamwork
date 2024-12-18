@@ -272,31 +272,6 @@ router.get('/', async (req, res)=>{
 
     console.log(minLat, maxLat,typeof minLat );
 
-    // if(minLat) {
-    //      where.lat ={
-    //         [Op.gte] : Number(minLat)
-    //      }
-        
-    // }
-   
-    // if(maxLat) where.lat={
-    //     [Op.lte] : Number(minLng)
-    // }
-    // if(minLng) where.Lng ={
-    //     [Op.gte]: Number(minLng)
-    // }
-    // if(maxLng) where.Lng ={
-    //      [Op.lte] : Number(maxLng)
-    // }
-    // if(minPrice) where.price = {
-    //     [Op.gte] :Number(minPrice)
-    // }
-    // if(maxPrice) where.price ={
-    //     [Op.lte]: Number(maxPrice)
-    // }
-  
-
-    // console.log(where);
 
     const findSpot = await Spot.findAll({
         attributes:['id','ownerId','address','city','state','country','lat','lng','name', 'description','price','createdAt','updatedAt'],
@@ -351,53 +326,19 @@ router.get('/', async (req, res)=>{
         });
 
         findSpotelObj['previewImage'] =foundSpotImage? foundSpotImage.toJSON():null;
-        findSpotelObj['page'] =page;
-        findSpotelObj['size'] =size;
+        // findSpotelObj['page'] =page;
+        // findSpotelObj['size'] =size;
         results.push(findSpotelObj);
         
     }
 
-    // const findSpot = await Spot.findAll({
-    //     attributes:['id','ownerId','address','city','state','country','lat','lng','name', 'description','price','createdAt','updatedAt'],
-    //     where,
-       
-    //     include:[{
-    //         model:Review,
-    //         attributes:[[sequelize.fn('AVG',sequelize.col('stars')),'avgRating']],
-    //     },
-    //     {
-    //        model: SpotImage ,
-    //        as:'previewImage',
-    //        attributes:['url'],
-         
-    //     }],
-
-    //     group: ['Spot.id'],
-    //     limit:Number(size),
-    //     offset,
-    //     raw: true, 
-    //     nest: true  
-    // });
-
-    // let newSpot=[];
-    // for (let thespot of findSpot){
-    //     const {Reviews,...rest} =thespot;
-    //     newSpot.push({
-    //         ...rest,
-    //         "avgRating":Reviews.avgRating
-    //     })
-    // }
 
     res.setHeader("Content-Type","application/json");
     res.status(200);
-    // res.json({"Spots":newSpot,
-    //     page,
-    //     size
-    // });
-    // console.log( results)
+   
     res.json({
         "Spots":results,
-            page,
+        page,
         size
     })
 });
