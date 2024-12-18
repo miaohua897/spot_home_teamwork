@@ -306,6 +306,9 @@ router.get('/', async (req, res)=>{
 
     for (let findSpotel of findSpot){
         let findSpotelObj =findSpotel.toJSON();
+        findSpotelObj["lat"] = Number(findSpotelObj["lat"]);
+        findSpotelObj["lng"] = Number(findSpotelObj["lng"]);
+        findSpotelObj["price"] = Number(findSpotelObj["price"]);
         const foundReviews = await Review.findAll({
             attributes:[[sequelize.fn('AVG',sequelize.col('stars')),'avgRating']],
             where:{
