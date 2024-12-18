@@ -237,7 +237,7 @@ router.get('/', async (req, res)=>{
         })
     }
 
-    if(minLat){
+    if(typeof minLat === 'string'){
         const minlatSplit = minLat.split('');
         minlatSplit.forEach(el=>{
             if(!'0123456789'.includes(el)){
@@ -245,10 +245,13 @@ router.get('/', async (req, res)=>{
                 res.status(400);
         return res.json({
             "message":"wrong query",
-            "errors":{minLat,
+            "errors":{
+            minLat,
             maxLat,
             minLng,
-            maxLng}
+            maxLng
+        },
+            
         })
                 
             }
@@ -319,8 +322,8 @@ router.get('/', async (req, res)=>{
         res.status(404);
         res.setHeader('Content-Type','application/json');
         return res.json({
-            "message": "Spot couldn't be found"
-          })
+             "message": "Spot couldn't be found"
+        })
     }
 
     let results = [];
@@ -393,7 +396,9 @@ router.get('/', async (req, res)=>{
     // });
     // console.log( results)
     res.json({
-        "Spots":results
+        "Spots":results,
+            page,
+        size
     })
 });
 
