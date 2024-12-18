@@ -39,6 +39,7 @@ describe("Get all Spots", function () {
           if (err) errors.push("Error in second request: " + err.message);
           try {
             const spots = res.body.Spots;
+            console.log(spots);
 
             assert(Array.isArray(spots), "Spots should be an array");
             assert(spots.length > 0, "Spots array should not be empty");
