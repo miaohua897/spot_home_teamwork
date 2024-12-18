@@ -72,6 +72,7 @@ describe("\nCreate a Spot", function () {
 
     it("Body Matches API Docs", function (done) {
       const spotData = createUniqueSpot();
+      console.log(spotData)
       agent
         .post("/spots")
         .send(spotData)
