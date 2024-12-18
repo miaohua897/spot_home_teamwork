@@ -16,3 +16,6 @@ export const apiBaseUrl = 'http://localhost:8000/api';
 // export const apiBaseUrl = 'https://testing-action.onrender.com/api';
 // export const apiBaseUrl = 'https://api-project-bvcg.onrender.com/api'
 // export const apiBaseUrl = 'https://spot-homes.onrender.com/api'
+
+
+//   DROP SCHEMA test_base CASCADE;
